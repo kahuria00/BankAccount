@@ -1,37 +1,66 @@
+from datetime import datetime
 class Account:
-	def __init__ (self,first_name,second_name,initial_balance):
+    def __init__ (self,first_name,second_name):
 
-		self.first_name=first_name
-		self.second_name=second_name
-		self.initial_balance=initial_balance
+        self.first_name=first_name
+        self.second_name=second_name
+        self.balance=0.00
+        self.loan=0.00
+        self.deposits=[]
+        self.withdraws=[]
+        self.loans=[]
+   
+    def message(self):
 
-	def full_names(self):
-		name=self.first_name+self.second_name
-		return name
+        return "Hello,{} {} Welcome to KCB Mshwari your balance is {}" . format (self.first_name,self.second_name,self.balance)
 
-	def initial_balance(self):
-		return  balance
-	
-	def message(self):
+    def deposit(self,deposited_bal):
+        time=datetime.now()
+        object={"time":time,"depositedbal":deposited_bal}
+        self.deposits.append(object)
+        self.balance= self.balance+deposited_bal
+        #self.deposits.append(deposited_bal)
+        return "You have deposited{}". format(deposited_bal)
+    
+    def show_deposits(self):
+        for deposited_bal in self.deposits:
+            time=deposited_bal["time"]
+            formated_time=time.strftime("%c")
+            amount=deposited_bal["depositedbal"]
+            print("on {} you deposited{}".format(formated_time,amount))
 
-		return "Hello,{} {} Welcome to KCB Mshwari your balance is {}" . format (self.first_name,self.second_name,self.initial_balance)
+    def withdraw(self,withdrawn_bal):
+        #self.withdraws.append(withdrawn_bal)
+        time=datetime.now()
+        object={"time":time,"withdrawn":withdrawn_bal}
+        self.withdraws.append(object)
+        if withdrawn_bal<self.balance:
+            self.balance=self.balance-withdrawn_bal
+            return "you have successfully withdrawn{}" . format(withdrawn_bal)
+        else:
+            return "sorry you have insufficient balance"
+    
+    def show_withdraws(self,):
+        for withdrawn_bal in self.withdraws:
+            time=withdrawn_bal["time"]
+            formated_time=time.strftime("%c")
+            amount=withdrawn_bal["withdrawn"]
+            print("on {} you withdrew {}".format(formated_time,amount))
 
-	def deposit(self):
-		deposited_bal= float(input("Enter amount you want to deposit:"))
-		self.initial_balance += deposited_bal
-		print("\n You deposited:", deposited_bal)
+    
+    def show_balance(self,current_bal):
+        current_bal=self.balance+self.deposit-self.withdraw
+        return "Hello {} {} you current balance is{}" . format(self.first_name,self.second_name,self.current_bal)
+    
+    def give_loan(self):
 
-	def withdraw(self):
-		withdrawn_bal= float(input("Enter amount withdrawn:"))
-		if self.initial_balance >=withdrawn_bal:
-			self.initial_balance-=withdrawn_bal
-		print("\n You have withdrawn:", withdrawn_bal )
-        
-        else :
-			print("\n sorry Insufficient balance")
+       self.total_deposits = []
+        for deposited_bal in self.deposits:
+            total_deposits.append(deposited_bal['depositedbal'])
+            total_deposits = sum(self.deposits)
 
-	def print_balance(self):
-		print("\n  Current Balance=", self.initial_sbalance)
-		
+        if  total_deposits >=5  and  (self.deposited )* 1/3 and self.loan==0: 
+        return "you can get a loan"
 
-		
+
+    
